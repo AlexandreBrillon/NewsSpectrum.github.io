@@ -1,4 +1,4 @@
-Demo Link - Only Works with the keyword trump.
+Demo Link - Only Works with the Keyword Trump.
 https://jsonvorhees.compare
 
 Develepor Post Link
