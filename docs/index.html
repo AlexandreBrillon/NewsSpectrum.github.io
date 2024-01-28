@@ -1,14 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Domain Test</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>News Headline Scraper</title>
 </head>
 <body>
-<button id="testButton">Test Domain</button>
-<div id="response"></div>
 
-<script src="script.js"></script>
+    <nav>
+        <a href="#" id="homeButton">Home</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+    </nav>
+
+    <div class="container">
+        <h1>Welcome to News Headline Scraper</h1>
+
+        <div id="sources">
+            <h2>Our news sources:</h2>
+            <p>We provide headlines from the following sources:</p>
+            <ul>
+                <li class="fox-source">Fox News</li>
+                <li class="abc-source">ABC</li>
+                <li class="nyt-source">New York Times</li>
+                <li class="nyp-source">New York Post</li>
+            </ul>
+        </div>
+
+        <form id="headlineForm">
+            <label for="keyword">Enter a keyword:</label>
+            <input type="text" id="keyword" name="keyword" required>
+            <button class="button" type="button" onclick="fetchHeadlines()">Fetch Headlines</button>
+        </form>
+
+        <div id="resultContainer">
+            <div id="foxHeadlines" class="news-section">
+                <h2>Fox News Headlines</h2>
+                <ul id="foxList"></ul>
+            </div>
+
+            <div id="abcHeadlines" class="news-section">
+                <h2>ABC Headlines</h2>
+                <ul id="abcList"></ul>
+            </div>
+
+            <div id="nytHeadlines" class="news-section">
+                <h2>New York Times Headlines</h2>
+                <ul id="nytList"></ul>
+            </div>
+
+            <div id="nypHeadlines" class="news-section">
+                <h2>New York Post Headlines</h2>
+                <ul id="nypList"></ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="loadingIndicator">
+        <div class="spinner"></div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
