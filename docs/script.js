@@ -63,7 +63,7 @@ function fetchHeadlines() {
     .catch(error => {
         console.error('Error fetching headlines:', error);
         hideLoadingIndicator();
-        alert('Error fetching headlines. Please try again.');
+        console.error('Error fetching headlines. Please try again.', error);
     });
 
     // Simulate a delay (replace with actual fetch call)
@@ -217,28 +217,28 @@ function getSampleHeadlinesData() {
             const content = data["Fox News"];
             const percentage = getRandomPercentage();
             const color = getTextColorFromBias(percentage);
-            return [`${color} Title ${content[1][index]} (${percentage}%)`, `${color} Content ${content[2][index]}`, `${color} href link ${content[3][index]}`];
+            return {"color": color, "headline": [`${content[1][index]} (${percentage}%)`, `${color} Content ${content[2][index]}`, `${color} href link ${content[3][index]}`]};
         }),
         "ABC": headlines.map((_, index) => {
             const bias = data["ABC"][0][index];
             const content = data["ABC"];
             const percentage = getRandomPercentage();
             const color = getTextColorFromBias(percentage);
-            return [`${color} Title1 ${content[1][index]} (${percentage}%)`, `${color} Content1 ${content[2][index]}`, `${color} href link1 ${content[3][index]}`];
+            return {"color": color, "headline": [`${content[1][index]} (${percentage}%)`, `${color} Content1 ${content[2][index]}`, `${color} href link1 ${content[3][index]}`]};
         }),
         "New York Times": headlines.map((_, index) => {
             const bias = data["New York Times"][0][index];
             const content = data["New York Times"];
             const percentage = getRandomPercentage();
             const color = getTextColorFromBias(percentage);
-            return [`${color} Title2 ${content[1][index]} (${percentage}%)`, `${color} Content2 ${content[2][index]}`, `${color} href link2 ${content[3][index]}`];
+            return {"color": color, "headline": [`${content[1][index]} (${percentage}%)`, `${color} Content2 ${content[2][index]}`, `${color} href link2 ${content[3][index]}`]};
         }),
         "New York Post": headlines.map((_, index) => {
             const bias = data["New York Post"][0][index];
             const content = data["New York Post"];
             const percentage = getRandomPercentage();
             const color = getTextColorFromBias(percentage);
-            return [`${color} Title3 ${content[1][index]} (${percentage}%)`, `${color} Content3 ${content[2][index]}`, `${color} href link3 ${content[3][index]}`];
+            return {"color": color, "headline": [`${content[1][index]} (${percentage}%)`, `${color} Content3 ${content[2][index]}`, `${color} href link3 ${content[3][index]}`]};
         })
         
         
@@ -289,8 +289,8 @@ function displayHeadlines(data) {
     if (data["Fox News"]) {
         data["Fox News"].forEach((headline, index) => {
             const listItem = document.createElement("li");
-            listItem.textContent = `${index + 1}. ${headline[0]}`;
-            listItem.style.color = headline[0].split(' ')[0]; // Set text color based on bias
+            listItem.textContent = `${index + 1}. ${headline.headline[0]}`;
+            listItem.style.color = headline.color; // Set text color based on bias
             foxList.appendChild(listItem);
         });
     } else {
@@ -301,8 +301,8 @@ function displayHeadlines(data) {
     if (data["ABC"]) {
         data["ABC"].forEach((headline, index) => {
             const listItem = document.createElement("li");
-            listItem.textContent = `${index + 1}. ${headline[0]}`;
-            listItem.style.color = headline[0].split(' ')[0]; // Set text color based on bias
+            listItem.textContent = `${index + 1}. ${headline.headline[0]}`;
+            listItem.style.color = headline.color; // Set text color based on bias
             abcList.appendChild(listItem);
         });
     } else {
@@ -313,8 +313,8 @@ function displayHeadlines(data) {
     if (data["New York Times"]) {
         data["New York Times"].forEach((headline, index) => {
             const listItem = document.createElement("li");
-            listItem.textContent = `${index + 1}. ${headline[0]}`;
-            listItem.style.color = headline[0].split(' ')[0]; // Set text color based on bias
+            listItem.textContent = `${index + 1}. ${headline.headline[0]}`;
+            listItem.style.color = headline.color; // Set text color based on bias
             nytList.appendChild(listItem);
         });
     } else {
@@ -325,8 +325,8 @@ function displayHeadlines(data) {
     if (data["New York Post"]) {
         data["New York Post"].forEach((headline, index) => {
             const listItem = document.createElement("li");
-            listItem.textContent = `${index + 1}. ${headline[0]}`;
-            listItem.style.color = headline[0].split(' ')[0]; // Set text color based on bias
+            listItem.textContent = `${index + 1}. ${headline.headline[0]}`;
+            listItem.style.color = headline.color; // Set text color based on bias
             nypList.appendChild(listItem);
         });
     } else {
